@@ -8,7 +8,7 @@ export default React.createClass({
       minutes: 0,
       seconds: 0,
       isBeerOClock: false,
-      secondsLeft: 0
+      msLeft: 0
     };
   },
   componentDidMount(){
@@ -38,7 +38,7 @@ export default React.createClass({
       hours: TimeUtils.formatValue(hoursLeft),
       minutes: TimeUtils.formatValue(minutesLeft),
       seconds: TimeUtils.formatValue(secondsLeft),
-      secondsLeft: remainingTime,
+      msLeft: remainingTime,
       isBeerOClock: this.isBeerOClock()
     });
   },
@@ -59,12 +59,12 @@ export default React.createClass({
     }
   },
   render() {
-    let { isBeerOClock, hours, minutes, seconds, secondsLeft } = this.state;
+    let { isBeerOClock, hours, minutes, seconds, msLeft } = this.state;
     let counterStyle, message;
     let messageOn = "Beer o'clock will be over in:";
     let messageOff = "Beer o'clock starts in:";
 
-    if (secondsLeft < 900) {
+    if (msLeft < 900000) {
       counterStyle = 'alert';
       if (isBeerOClock) {
         message = `Hurry up! ${messageOn}`;

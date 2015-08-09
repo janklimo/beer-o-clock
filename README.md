@@ -10,4 +10,4 @@ Open a new tab in Chrome and you'll know right away.
 ![](screenshot.png)
 
 ## Tech stuff
-Built with React, Gulp, Babel, ES6, Sass. Tested by Jest.
+Built with React, Gulp, Babel, ES6, Sass. Tested with Jest.
