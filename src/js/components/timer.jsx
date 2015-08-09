@@ -64,9 +64,9 @@ export default React.createClass({
     let result = this.isBeerOClock() ? 'YES!' : 'NO :('
 
     return <div>
-      <h3>{result}</h3>
+      <h1>{result}</h1>
       <h4>Time left:</h4>
-      <p>{this.state.hours} : {this.state.minutes} : {this.state.seconds}</p>
+      <h3>{this.state.hours} : {this.state.minutes} : {this.state.seconds}</h3>
     </div>
   }
 });

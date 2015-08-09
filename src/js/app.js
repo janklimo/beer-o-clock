@@ -4,7 +4,7 @@ import Timer from './components/timer.jsx'
 const App = React.createClass({
   render() {
     return <div>
-      <h1>Is it beer o'clock yet?</h1>
+      <h2>Is it beer o'clock yet?</h2>
       <Timer />
     </div>
   }

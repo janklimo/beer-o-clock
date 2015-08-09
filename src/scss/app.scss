@@ -27,3 +27,26 @@ body, input {
   display: -webkit-flex;
   font-family: 'Avenir', 'helvetica neue', helvetica, arial, sans-serif;
 }
+
+h1 {
+  font-size: 50px;
+  margin: 50px auto;
+}
+
+h2 {
+  font-size: 28px;
+  font-style: italic;
+  font-family: Open Sans;
+  font-weight: 500;
+  color: #777;
+}
+
+h3 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: 500;
+}

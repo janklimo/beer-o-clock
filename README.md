@@ -1,7 +1,8 @@
 ## Introduction
-Sale of alcohol in Thailand is restricted during certain times of day and
+Sale of alcohol in Thailand is restricted during some times of day and
 completely banned on certain holidays.
 
-This Chrome extension
+Feel like grabbing a beer from 7/11 but not sure if it's possible right now?
+Open a new tab in Chrome and you'll know right away.
 
 ##Technology, Installation, etc.
