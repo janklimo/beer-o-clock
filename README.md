@@ -8,3 +8,6 @@ Open a new tab in Chrome and you'll know right away.
 ## Preview
 
 ![](screenshot.png)
+
+## Tech stuff
+Built with React, Gulp, Babel, ES6, Sass.
