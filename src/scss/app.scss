@@ -36,7 +36,7 @@ h1 {
 h2 {
   font-size: 28px;
   font-style: italic;
-  font-family: Open Sans;
+  font-family: serif;
   font-weight: 500;
   color: #777;
 }
@@ -49,4 +49,16 @@ h3 {
 h4 {
   font-size: 16px;
   font-weight: 500;
+}
+
+.win {
+  color: #51DA51;
+}
+
+.fail {
+  color: crimson;
+}
+
+.alert {
+  color: orange;
 }

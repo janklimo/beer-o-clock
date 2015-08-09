@@ -1,30 +1,26 @@
 import React from 'react';
+import * as TimeUtils from '../utils/time.js';
 
 export default React.createClass({
   getInitialState(){
     return {
       hours: 0,
       minutes: 0,
-      seconds: 0
+      seconds: 0,
+      isBeerOClock: false,
+      secondsLeft: 0
     };
   },
   componentDidMount(){
     this.tick();
-    this.timer = setInterval(this.tick, 1000);
+    this.timer = setInterval(this.tick, 250);
   },
   componentWillUnmount(){
     clearInterval(this.timer);
   },
   isBeerOClock() {
     let currentHour = new Date().getHours();
-    return (currentHour > 11 && currentHour < 14) || (currentHour > 17);
-  },
-  formatValue(val) {
-    let formatted;
-    if (val.toString().length == 1) {
-      formatted = `0${val}`;
-      return formatted;
-    } else return val;
+    return (currentHour > 11 && currentHour < 14) || (currentHour >= 17);
   },
   tick() {
     let endTime = this.nearestTreshold();
@@ -39,9 +35,11 @@ export default React.createClass({
     secondsLeft = secondsLeft-hoursLeft*3600-minutesLeft*60;
 
     this.setState({
-      hours: this.formatValue(hoursLeft),
-      minutes: this.formatValue(minutesLeft),
-      seconds: this.formatValue(secondsLeft)
+      hours: TimeUtils.formatValue(hoursLeft),
+      minutes: TimeUtils.formatValue(minutesLeft),
+      seconds: TimeUtils.formatValue(secondsLeft),
+      secondsLeft: remainingTime,
+      isBeerOClock: this.isBeerOClock()
     });
   },
   nearestTreshold() {
@@ -61,12 +59,34 @@ export default React.createClass({
     }
   },
   render() {
-    let result = this.isBeerOClock() ? 'YES!' : 'NO :('
+    let { isBeerOClock, hours, minutes, seconds, secondsLeft } = this.state;
+    let counterStyle, message;
+    let messageOn = "Beer o'clock will be over in:";
+    let messageOff = "Beer o'clock starts in:";
+
+    if (secondsLeft < 900) {
+      counterStyle = 'alert';
+      if (isBeerOClock) {
+        message = `Hurry up! ${messageOn}`;
+      } else {
+        message = `Get ready! ${messageOff}`;
+      }
+    } else {
+      if (isBeerOClock) {
+        counterStyle = 'win';
+        message = messageOn;
+      } else {
+        counterStyle = 'fail';
+        message = messageOff;
+      }
+    }
+
+    let result = isBeerOClock ? 'YES!' : 'NO :('
 
     return <div>
-      <h1>{result}</h1>
-      <h4>Time left:</h4>
-      <h3>{this.state.hours} : {this.state.minutes} : {this.state.seconds}</h3>
+      <h1 className={counterStyle}>{result}</h1>
+      <h4>{message}</h4>
+      <h3>{hours} : {minutes} : {seconds}</h3>
     </div>
   }
 });
