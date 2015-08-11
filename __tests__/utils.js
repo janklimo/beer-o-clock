@@ -35,4 +35,27 @@ describe('Utils', () => {
       expect(output.getTime()).toEqual(new Date(2015, 8, 12).getTime());
     });
   });
+
+  describe('isBeerOClock', () => {
+    it('identifies the 1st period as falsy', () => {
+      let time = new Date(2015, 8, 11, 0, 5, 1);
+      let output = TimeUtils.isBeerOClock(time);
+      expect(output).toBeFalsy();
+    });
+    it('identifies the 2nd period as truthy', () => {
+      let time = new Date(2015, 8, 11, 11, 5, 1);
+      let output = TimeUtils.isBeerOClock(time);
+      expect(output).toBeTruthy();
+    });
+    it('identifies the 3rd period as falsy', () => {
+      let time = new Date(2015, 8, 11, 14, 0, 1);
+      let output = TimeUtils.isBeerOClock(time);
+      expect(output).toBeFalsy();
+    });
+    it('identifies the last limit of the day as midnight', () => {
+      let time = new Date(2015, 8, 11, 17, 0, 1);
+      let output = TimeUtils.isBeerOClock(time);
+      expect(output).toBeTruthy();
+    });
+  });
 });

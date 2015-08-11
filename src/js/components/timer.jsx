@@ -18,10 +18,6 @@ export default React.createClass({
   componentWillUnmount(){
     clearInterval(this.timer);
   },
-  isBeerOClock() {
-    let currentHour = new Date().getHours();
-    return (currentHour > 11 && currentHour < 14) || (currentHour >= 17);
-  },
   tick() {
     let currentTime = new Date();
     let endTime = TimeUtils.nearestLimit(currentTime);
@@ -39,7 +35,7 @@ export default React.createClass({
       minutes: TimeUtils.formatValue(minutesLeft),
       seconds: TimeUtils.formatValue(secondsLeft),
       msLeft: remainingTime,
-      isBeerOClock: this.isBeerOClock()
+      isBeerOClock: TimeUtils.isBeerOClock(currentTime)
     });
   },
   render() {

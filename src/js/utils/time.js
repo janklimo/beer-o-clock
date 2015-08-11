@@ -21,3 +21,8 @@ export function nearestLimit(date) {
     return new Date(currentYear, currentMonth, currentDay + 1);
   }
 }
+
+export function isBeerOClock(date) {
+  let currentHour = date.getHours();
+  return (currentHour >= 11 && currentHour < 14) || (currentHour >= 17);
+}
