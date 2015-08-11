@@ -23,8 +23,8 @@ export default React.createClass({
     return (currentHour > 11 && currentHour < 14) || (currentHour >= 17);
   },
   tick() {
-    let endTime = this.nearestTreshold();
     let currentTime = new Date();
+    let endTime = TimeUtils.nearestLimit(currentTime);
     let remainingTime = endTime - currentTime;
 
     let hoursLeft = parseInt((remainingTime)/3600000);
@@ -41,22 +41,6 @@ export default React.createClass({
       msLeft: remainingTime,
       isBeerOClock: this.isBeerOClock()
     });
-  },
-  nearestTreshold() {
-    let currentDate = new Date();
-    let currentYear = currentDate.getFullYear();
-    let currentMonth = currentDate.getMonth();
-    let currentDay = currentDate.getDate();
-    let currentHour = currentDate.getHours();
-    if (currentHour < 11) {
-      return new Date(currentYear, currentMonth, currentDay, 11);
-    } else if (currentHour >= 11 && currentHour < 14) {
-      return new Date(currentYear, currentMonth, currentDay, 14);
-    } else if (currentHour >= 14 && currentHour < 17) {
-      return new Date(currentYear, currentMonth, currentDay, 17);
-    } else if (currentHour >= 17) {
-      return new Date(currentYear, currentMonth, currentDay + 1);
-    }
   },
   render() {
     let { isBeerOClock, hours, minutes, seconds, msLeft } = this.state;
