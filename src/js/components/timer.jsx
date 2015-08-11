@@ -64,6 +64,7 @@ export default React.createClass({
     let messageOn = "Beer o'clock will be over in:";
     let messageOff = "Beer o'clock starts in:";
 
+    // convey urgency when time remaining is < 15 min
     if (msLeft < 900000) {
       counterStyle = 'alert';
       if (isBeerOClock) {
