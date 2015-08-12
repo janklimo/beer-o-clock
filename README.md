@@ -7,7 +7,7 @@ Open a new tab in Chrome and you'll know right away.
 
 ## Preview
 
-![](screenshot.png)
+![](screenshot.gif)
 
 ## Tech stuff
 Built with React, Gulp, Babel, ES6, Sass. Tested with Jest.
