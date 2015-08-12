@@ -4,9 +4,9 @@ import * as TimeUtils from '../utils/time.js';
 export default React.createClass({
   getInitialState(){
     return {
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
+      hLeft: 0,
+      mLeft: 0,
+      sLeft: 0,
       isBeerOClock: false,
       msLeft: 0
     };
@@ -21,32 +21,21 @@ export default React.createClass({
   tick() {
     let currentTime = new Date();
     let endTime = TimeUtils.nearestLimit(currentTime);
-    let remainingTime = endTime - currentTime;
 
-    let hoursLeft = parseInt((remainingTime)/3600000);
-    let minutesLeft = parseInt((remainingTime)/60000);
-    let secondsLeft = parseInt((remainingTime)/1000);
+    let { hLeft, mLeft, sLeft, msLeft,
+      isBeerOClock } = TimeUtils.fetchCountdown(currentTime, endTime);
 
-    minutesLeft = minutesLeft-hoursLeft*60;
-    secondsLeft = secondsLeft-hoursLeft*3600-minutesLeft*60;
-
-    this.setState({
-      hours: TimeUtils.formatValue(hoursLeft),
-      minutes: TimeUtils.formatValue(minutesLeft),
-      seconds: TimeUtils.formatValue(secondsLeft),
-      msLeft: remainingTime,
-      isBeerOClock: TimeUtils.isBeerOClock(currentTime)
-    });
+    this.setState({ hLeft, mLeft, sLeft, msLeft, isBeerOClock });
   },
   render() {
-    let { isBeerOClock, hours, minutes, seconds, msLeft } = this.state;
-    let counterStyle, message;
+    let { isBeerOClock, hLeft, mLeft, sLeft, msLeft } = this.state;
+    let resultStyle, message;
     let messageOn = "Beer o'clock will be over in:";
     let messageOff = "Beer o'clock starts in:";
 
     // convey urgency when time remaining is < 15 min
     if (msLeft < 900000) {
-      counterStyle = 'alert';
+      resultStyle = 'alert';
       if (isBeerOClock) {
         message = `Hurry up! ${messageOn}`;
       } else {
@@ -54,10 +43,10 @@ export default React.createClass({
       }
     } else {
       if (isBeerOClock) {
-        counterStyle = 'win';
+        resultStyle = 'win';
         message = messageOn;
       } else {
-        counterStyle = 'fail';
+        resultStyle = 'fail';
         message = messageOff;
       }
     }
@@ -65,9 +54,9 @@ export default React.createClass({
     let result = isBeerOClock ? 'YES!' : 'NO :('
 
     return <div>
-      <h1 className={counterStyle}>{result}</h1>
+      <h1 className={resultStyle}>{result}</h1>
       <h4>{message}</h4>
-      <h3>{hours} : {minutes} : {seconds}</h3>
+      <h3>{hLeft} : {mLeft} : {sLeft}</h3>
     </div>
   }
 });

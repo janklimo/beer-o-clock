@@ -26,3 +26,21 @@ export function isBeerOClock(date) {
   let currentHour = date.getHours();
   return (currentHour >= 11 && currentHour < 14) || (currentHour >= 17);
 }
+
+export function fetchCountdown(currentTime, limitTime) {
+  let msLeft = limitTime - currentTime;
+  let hLeft = parseInt((msLeft)/3600000);
+  let mLeft = parseInt((msLeft)/60000);
+  let sLeft = parseInt((msLeft)/1000);
+
+  mLeft = mLeft - hLeft*60;
+  sLeft = sLeft - hLeft*3600 - mLeft*60;
+
+  return {
+    hLeft: formatValue(hLeft),
+    mLeft: formatValue(mLeft),
+    sLeft: formatValue(sLeft),
+    msLeft,
+    isBeerOClock: isBeerOClock(currentTime)
+  }
+}
