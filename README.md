@@ -11,3 +11,7 @@ Open a new tab in Chrome and you'll know right away.
 
 ## Tech stuff
 Built with React, Gulp, Babel, ES6, Sass. Tested with Jest.
+
+Clone and install with `npm install`, run the test suite with `npm test`.
+
+Ideas and contributions welcome!
